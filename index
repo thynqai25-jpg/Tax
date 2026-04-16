@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aastha Advisors — Audit, Tax & Advisory Services in India</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --ink-muted: #8a8a8a;
+  --line: #e8e6e1;
+  --bg: #fafaf7;
+  --paper: #ffffff;
+  --accent: #c84b1f;
+  --accent-soft: #f5ebe5;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.6; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* HEADER */
+.header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,250,247,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid transparent; transition: border-color 0.4s; }
+.header.scrolled { border-bottom-color: var(--line); }
+.header-inner { max-width: 1280px; margin: 0 auto; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; }
+.logo { display: flex; align-items: baseline; gap: 8px; font-family: var(--serif); font-size: 22px; font-weight: 500; letter-spacing: -0.02em; }
+.logo-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); display: inline-block; }
+nav { display: flex; gap: 36px; }
+nav a { font-size: 14px; color: var(--ink-soft); transition: color 0.3s; }
+nav a:hover { color: var(--ink); }
+.cta-btn { background: var(--ink); color: var(--paper); padding: 10px 22px; font-size: 13px; font-weight: 500; border: none; cursor: pointer; transition: background 0.3s; border-radius: 999px; }
+.cta-btn:hover { background: var(--accent); }
+.burger { display: none; background: none; border: none; padding: 8px; cursor: pointer; }
+.burger span { display: block; width: 22px; height: 1.5px; background: var(--ink); margin: 5px 0; }
+
+/* HERO */
+.hero { padding: 160px 40px 100px; max-width: 1280px; margin: 0 auto; }
+.hero-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; align-items: end; }
+.hero-eyebrow { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 32px; display: inline-flex; align-items: center; gap: 12px; opacity: 0; transform: translateY(10px); animation: rise 0.8s 0.2s ease forwards; }
+.hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+.hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(38px, 5.2vw, 76px); line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 32px; }
+.hero h1 .word { display: inline-block; opacity: 0; transform: translateY(20px); animation: rise 0.9s ease forwards; }
+.hero h1 .italic { font-style: italic; color: var(--accent); }
+.hero-sub { font-size: 17px; color: var(--ink-soft); max-width: 540px; line-height: 1.7; margin-bottom: 40px; opacity: 0; transform: translateY(15px); animation: rise 0.8s 1.2s ease forwards; }
+.hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; opacity: 0; transform: translateY(15px); animation: rise 0.8s 1.4s ease forwards; }
+.btn-primary { background: var(--ink); color: var(--paper); padding: 16px 32px; font-size: 14px; font-weight: 500; border-radius: 999px; transition: background 0.3s; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; }
+.btn-primary:hover { background: var(--accent); }
+.btn-primary svg { transition: transform 0.3s; }
+.btn-primary:hover svg { transform: translateX(3px); }
+.btn-ghost { color: var(--ink); padding: 16px 8px; font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+.btn-ghost:hover { border-color: var(--ink); }
+
+/* Hero visual */
+.hero-visual { aspect-ratio: 3/4; width: 100%; overflow: hidden; position: relative; background: var(--ink); opacity: 0; transform: translateY(30px); animation: rise 1.2s 0.7s ease forwards; display: block; }
+.hero-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 8s ease; display: block; }
+.hero-visual:hover img { transform: scale(1.04); }
+.hero-visual-tag { position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); padding: 14px 18px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-muted); display: flex; justify-content: space-between; align-items: center; }
+.hero-visual-tag em { font-family: var(--serif); font-style: italic; text-transform: none; letter-spacing: 0; color: var(--accent); font-size: 14px; }
+
+/* Hero meta */
+.hero-meta { margin-top: 80px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding-top: 40px; border-top: 1px solid var(--line); opacity: 0; transform: translateY(15px); animation: rise 0.8s 1.6s ease forwards; }
+.hero-meta-item .num { font-family: var(--serif); font-size: 36px; font-weight: 500; letter-spacing: -0.02em; }
+.hero-meta-item .lab { font-size: 13px; color: var(--ink-muted); margin-top: 6px; }
+
+/* SECTIONS */
+section { padding: 120px 40px; }
+.container { max-width: 1280px; margin: 0 auto; }
+.section-eyebrow { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 20px; display: inline-flex; align-items: center; gap: 12px; }
+.section-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+.section-title { font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 4vw, 52px); line-height: 1.1; letter-spacing: -0.02em; max-width: 800px; margin-bottom: 24px; }
+.section-title em { color: var(--accent); font-style: italic; }
+.section-lead { font-size: 17px; color: var(--ink-soft); max-width: 580px; line-height: 1.7; }
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-top: 60px; }
+.about-visual { position: relative; aspect-ratio: 4/5; width: 100%; overflow: hidden; background: var(--ink); display: block; }
+.about-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 8s ease, filter 0.6s ease; filter: grayscale(40%) contrast(1.05); display: block; }
+.about-visual:hover img { transform: scale(1.04); filter: grayscale(0%) contrast(1.05); }
+.about-visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent 50%); pointer-events: none; }
+.about-visual-overlay { position: absolute; bottom: 32px; left: 32px; right: 32px; color: var(--paper); display: flex; justify-content: space-between; align-items: end; pointer-events: none; z-index: 1; }
+.about-visual .since-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.7; margin-bottom: 4px; }
+.about-visual .since { font-family: var(--serif); font-size: 56px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; }
+.about-visual .badge { font-family: var(--serif); font-size: 14px; font-style: italic; }
+.about-text p { font-size: 16px; line-height: 1.8; color: var(--ink-soft); margin-bottom: 20px; }
+.about-text p:first-child { font-family: var(--serif); font-size: 22px; line-height: 1.5; color: var(--ink); }
+.about-list { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.about-list-item { font-size: 14px; color: var(--ink-soft); display: flex; align-items: flex-start; gap: 10px; }
+.about-list-item::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); margin-top: 9px; flex-shrink: 0; }
+
+/* SERVICES */
+.services { background: var(--paper); }
+.services-list { margin-top: 80px; border-top: 1px solid var(--line); }
+.service-row { display: grid; grid-template-columns: 80px 1fr 2fr 60px; align-items: center; gap: 40px; padding: 32px 0; border-bottom: 1px solid var(--line); cursor: pointer; transition: padding 0.4s; position: relative; }
+.service-row:hover { padding-left: 24px; }
+.service-row::after { content: ''; position: absolute; left: 0; top: 0; width: 0; height: 100%; background: var(--accent-soft); z-index: -1; transition: width 0.4s; }
+.service-row:hover::after { width: 100%; }
+.service-num { font-family: var(--serif); font-size: 14px; color: var(--ink-muted); }
+.service-name { font-family: var(--serif); font-size: 28px; font-weight: 400; letter-spacing: -0.01em; transition: color 0.3s; }
+.service-row:hover .service-name { color: var(--accent); }
+.service-desc { font-size: 15px; color: var(--ink-soft); line-height: 1.6; }
+.service-arrow { text-align: right; font-family: var(--serif); font-size: 24px; color: var(--ink-muted); transition: transform 0.4s, color 0.3s; }
+.service-row:hover .service-arrow { transform: translateX(8px); color: var(--accent); }
+
+/* INSIGHTS */
+.insights-header { display: flex; justify-content: space-between; align-items: end; margin-bottom: 60px; }
+.insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.insight { display: flex; flex-direction: column; transition: opacity 0.3s; }
+.insight-image { aspect-ratio: 4/3; width: 100%; overflow: hidden; background: var(--ink); margin-bottom: 24px; display: block; }
+.insight-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease, filter 0.6s ease; filter: grayscale(30%); display: block; }
+.insight:hover .insight-image img { transform: scale(1.06); filter: grayscale(0%); }
+.insight-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.insight h3 { font-family: var(--serif); font-size: 22px; font-weight: 400; line-height: 1.3; letter-spacing: -0.01em; margin-bottom: 14px; }
+.insight p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 20px; flex: 1; }
+.insight-link { font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.3s, color 0.3s; }
+.insight:hover .insight-link { gap: 14px; color: var(--accent); }
+
+/* INDUSTRIES */
+.industries { background: var(--ink); color: var(--paper); padding: 100px 0; overflow: hidden; position: relative; }
+.industries::before { content: ''; position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1577415124269-fc1140a69e91?w=1600&q=80'); background-size: cover; background-position: center; opacity: 0.15; filter: grayscale(100%); }
+.industries .container { padding: 0 40px; position: relative; z-index: 1; }
+.industries .section-eyebrow { color: rgba(255,255,255,0.5); }
+.industries .section-title { color: var(--paper); }
+.industries .section-lead { color: rgba(255,255,255,0.65); }
+.ticker { margin-top: 80px; display: flex; gap: 60px; animation: scroll 40s linear infinite; width: max-content; position: relative; z-index: 1; }
+.ticker-item { font-family: var(--serif); font-size: 56px; font-weight: 400; letter-spacing: -0.02em; white-space: nowrap; display: flex; align-items: center; gap: 60px; color: rgba(255,255,255,0.85); }
+.ticker-item::after { content: '✦'; color: var(--accent); font-size: 24px; }
+@keyframes scroll { to { transform: translateX(-50%); } }
+
+/* CONTACT */
+.contact { background: var(--paper); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 60px; }
+.contact-info h3 { font-family: var(--serif); font-size: 28px; font-weight: 400; margin-bottom: 24px; letter-spacing: -0.01em; }
+.office-list { display: grid; }
+.office { padding: 24px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center; }
+.office:last-child { border-bottom: 1px solid var(--line); }
+.office-city { font-family: var(--serif); font-size: 20px; font-weight: 500; }
+.office-detail { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+.office-detail a { transition: color 0.2s; }
+.office-detail a:hover { color: var(--accent); }
+.contact-form { background: var(--bg); padding: 48px; border: 1px solid var(--line); }
+.contact-form h3 { font-family: var(--serif); font-size: 28px; font-weight: 400; margin-bottom: 32px; letter-spacing: -0.01em; }
+.form-field { margin-bottom: 24px; }
+.form-field label { display: block; font-size: 12px; color: var(--ink-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+.form-field input, .form-field textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--line); padding: 12px 0; font-size: 16px; font-family: var(--sans); color: var(--ink); outline: none; transition: border-color 0.3s; }
+.form-field input:focus, .form-field textarea:focus { border-color: var(--accent); }
+.form-field textarea { resize: vertical; min-height: 80px; }
+
+/* FOOTER */
+.footer { background: var(--bg); padding: 80px 40px 32px; border-top: 1px solid var(--line); }
+.footer-inner { max-width: 1280px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; padding-bottom: 60px; border-bottom: 1px solid var(--line); }
+.footer-brand p { margin-top: 20px; max-width: 320px; font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
+.footer-col h5 { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 20px; font-weight: 500; }
+.footer-col a { display: block; font-size: 14px; color: var(--ink-soft); padding: 6px 0; transition: color 0.2s; }
+.footer-col a:hover { color: var(--accent); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; font-size: 13px; color: var(--ink-muted); }
+.footer-bottom-links { display: flex; gap: 24px; }
+.footer-bottom-links a:hover { color: var(--ink); }
+
+/* ANIMATIONS */
+@keyframes rise { to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .header-inner { padding: 16px 20px; }
+  nav { display: none; }
+  .burger { display: block; }
+  .cta-btn { display: none; }
+  .hero { padding: 120px 20px 60px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { aspect-ratio: 4/3; }
+  .hero-meta { grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 60px; }
+  section { padding: 80px 20px; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .about-visual .since { font-size: 44px; }
+  .about-list { grid-template-columns: 1fr; gap: 16px; }
+  .service-row { grid-template-columns: 40px 1fr 30px; gap: 16px; padding: 24px 0; }
+  .service-desc { display: none; }
+  .service-name { font-size: 20px; }
+  .insights-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .insights-grid { grid-template-columns: 1fr; gap: 32px; }
+  .ticker-item { font-size: 32px; gap: 32px; }
+  .ticker { gap: 32px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  .office { grid-template-columns: 1fr; gap: 8px; }
+  .contact-form { padding: 32px 24px; }
+  .footer { padding: 60px 20px 24px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+@media (max-width: 500px) {
+  .footer-top { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="#" class="logo">Aastha <span class="logo-dot"></span> Advisors</a>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#industries">Industries</a>
+      <a href="#insights">Insights</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="cta-btn">Talk to us</button>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Audit · Tax · Advisory · India</div>
+      <h1>
+        <span class="word" style="animation-delay: 0.4s">Clear</span>
+        <span class="word" style="animation-delay: 0.5s">counsel</span>
+        <span class="word" style="animation-delay: 0.6s">for</span>
+        <br>
+        <span class="word" style="animation-delay: 0.7s">India's</span>
+        <span class="word italic" style="animation-delay: 0.8s">next</span>
+        <span class="word italic" style="animation-delay: 0.9s">chapter</span>
+        <span class="word" style="animation-delay: 1.0s">of</span>
+        <span class="word" style="animation-delay: 1.1s">growth.</span>
+      </h1>
+      <p class="hero-sub">A boutique advisory firm helping ambitious Indian businesses navigate audit, tax, and strategic decisions with clarity and craft.</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">Explore services
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h9m0 0L8 3m4 4L8 11"/></svg>
+        </a>
+        <a href="#about" class="btn-ghost">About the firm →</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=900&q=80" alt="Mumbai skyline at dusk">
+      <div class="hero-visual-tag">
+        <span>Mumbai · 06:42</span>
+        <em>Headquarters</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-meta">
+    <div class="hero-meta-item"><div class="num" data-target="18">0</div><div class="lab">Years of practice</div></div>
+    <div class="hero-meta-item"><div class="num" data-target="320">0</div><div class="lab">Clients served</div></div>
+    <div class="hero-meta-item"><div class="num" data-target="6">0</div><div class="lab">Cities in India</div></div>
+    <div class="hero-meta-item"><div class="num" data-target="14">0</div><div class="lab">Industry sectors</div></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-eyebrow">Who we are</div>
+    <h2 class="section-title">Trusted advisors to <em>founders, families & enterprises</em> across India.</h2>
+    <div class="about-grid reveal">
+      <div class="about-visual">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=900&q=80" alt="Team meeting in modern office">
+        <div class="about-visual-overlay">
+          <div>
+            <div class="since-label">Established</div>
+            <div class="since">2007</div>
+          </div>
+          <div class="badge">3 cities · 1 promise</div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p>For nearly two decades, we've worked alongside Indian businesses through transitions, listings, audits, and acquisitions — quietly, carefully, and with deep technical rigor.</p>
+        <p>Our team of chartered accountants, tax specialists, and advisors brings together institutional discipline with the agility of a partner-led firm. We believe good advisory is part technical, part judgment, and part listening well.</p>
+        <p>From early-stage startups in Bengaluru to fourth-generation family businesses in Ahmedabad, our clients trust us to think clearly when it matters most.</p>
+        <div class="about-list">
+          <div class="about-list-item">ICAI registered firm</div>
+          <div class="about-list-item">Peer reviewed practice</div>
+          <div class="about-list-item">SEBI panel auditors</div>
+          <div class="about-list-item">Member, IFAC network</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-eyebrow">What we do</div>
+    <h2 class="section-title">A focused practice. <em>Six core services.</em></h2>
+    <p class="section-lead">We don't do everything. We do a few things deeply — and stay close to the work.</p>
+    <div class="services-list reveal">
+      <a href="#" class="service-row">
+        <div class="service-num">01</div>
+        <div class="service-name">Audit & Assurance</div>
+        <div class="service-desc">Statutory audits, internal audits, and assurance engagements aligned with Ind AS and IFRS.</div>
+        <div class="service-arrow">→</div>
+      </a>
+      <a href="#" class="service-row">
+        <div class="service-num">02</div>
+        <div class="service-name">Direct & Indirect Tax</div>
+        <div class="service-desc">Income tax, GST, transfer pricing, and international tax advisory for businesses and individuals.</div>
+        <div class="service-arrow">→</div>
+      </a>
+      <a href="#" class="service-row">
+        <div class="service-num">03</div>
+        <div class="service-name">Transaction Advisory</div>
+        <div class="service-desc">Due diligence, valuations, deal structuring, and post-merger integration support.</div>
+        <div class="service-arrow">→</div>
+      </a>
+      <a href="#" class="service-row">
+        <div class="service-num">04</div>
+        <div class="service-name">Risk & Compliance</div>
+        <div class="service-desc">Risk frameworks, internal controls, regulatory compliance, and SOX readiness.</div>
+        <div class="service-arrow">→</div>
+      </a>
+      <a href="#" class="service-row">
+        <div class="service-num">05</div>
+        <div class="service-name">Family Office Services</div>
+        <div class="service-desc">Succession planning, wealth structuring, and governance for family-owned businesses.</div>
+        <div class="service-arrow">→</div>
+      </a>
+      <a href="#" class="service-row">
+        <div class="service-num">06</div>
+        <div class="service-name">Corporate Finance</div>
+        <div class="service-desc">Capital advisory, fundraising support, and IPO readiness for growth-stage companies.</div>
+        <div class="service-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="industries" id="industries">
+  <div class="container">
+    <div class="section-eyebrow">Industries</div>
+    <h2 class="section-title">Sector knowledge that <em>compounds over time.</em></h2>
+    <p class="section-lead">Deep specialisation across the industries shaping India today — from manufacturing and financial services to technology and consumer brands.</p>
+  </div>
+  <div class="ticker">
+    <div class="ticker-item">Financial Services</div>
+    <div class="ticker-item">Manufacturing</div>
+    <div class="ticker-item">Technology</div>
+    <div class="ticker-item">Real Estate</div>
+    <div class="ticker-item">Consumer & Retail</div>
+    <div class="ticker-item">Healthcare</div>
+    <div class="ticker-item">Pharmaceuticals</div>
+    <div class="ticker-item">Energy</div>
+    <div class="ticker-item">Financial Services</div>
+    <div class="ticker-item">Manufacturing</div>
+    <div class="ticker-item">Technology</div>
+    <div class="ticker-item">Real Estate</div>
+    <div class="ticker-item">Consumer & Retail</div>
+    <div class="ticker-item">Healthcare</div>
+    <div class="ticker-item">Pharmaceuticals</div>
+    <div class="ticker-item">Energy</div>
+  </div>
+</section>
+
+<section id="insights">
+  <div class="container">
+    <div class="insights-header">
+      <div>
+        <div class="section-eyebrow">Insights</div>
+        <h2 class="section-title">Reading the <em>regulatory weather.</em></h2>
+      </div>
+      <a href="#" class="btn-ghost">View all insights →</a>
+    </div>
+    <div class="insights-grid reveal">
+      <a href="#" class="insight">
+        <div class="insight-image">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80" alt="Tax documents and calculator">
+        </div>
+        <div class="insight-meta"><span>Tax</span><span>Mar 2026</span></div>
+        <h3>Budget 2026: Eight changes that will shape Indian businesses this year.</h3>
+        <p>A practical breakdown of the Union Budget's direct and indirect tax provisions and what they mean for promoters and CFOs.</p>
+        <span class="insight-link">Read article →</span>
+      </a>
+      <a href="#" class="insight">
+        <div class="insight-image">
+          <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80" alt="Financial reporting">
+        </div>
+        <div class="insight-meta"><span>Audit</span><span>Feb 2026</span></div>
+        <h3>Ind AS 117: Preparing insurance companies for the new reporting era.</h3>
+        <p>What CFOs in the insurance sector need to do now to be ready for the transition to the new accounting standard.</p>
+        <span class="insight-link">Read article →</span>
+      </a>
+      <a href="#" class="insight">
+        <div class="insight-image">
+          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80" alt="Family business meeting">
+        </div>
+        <div class="insight-meta"><span>Advisory</span><span>Jan 2026</span></div>
+        <h3>Family business succession: lessons from three generations.</h3>
+        <p>A field guide to navigating governance, ownership, and continuity in India's family-owned enterprises.</p>
+        <span class="insight-link">Read article →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-eyebrow">Get in touch</div>
+    <h2 class="section-title">Let's start a <em>conversation.</em></h2>
+    <p class="section-lead">Whether you're navigating a transition, planning a transaction, or simply need a second opinion — we're a phone call away.</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Our offices</h3>
+        <div class="office-list">
+          <div class="office">
+            <div class="office-city">Mumbai</div>
+            <div class="office-detail">Nariman Point, Mumbai 400021<br><a href="tel:+912266001234">+91 22 6600 1234</a></div>
+          </div>
+          <div class="office">
+            <div class="office-city">Bengaluru</div>
+            <div class="office-detail">Indiranagar, Bengaluru 560038<br><a href="tel:+918041001234">+91 80 4100 1234</a></div>
+          </div>
+          <div class="office">
+            <div class="office-city">New Delhi</div>
+            <div class="office-detail">Connaught Place, New Delhi 110001<br><a href="tel:+911143001234">+91 11 4300 1234</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Send us a note</h3>
+        <div class="form-field"><label>Your name</label><input type="text" placeholder="Full name"></div>
+        <div class="form-field"><label>Email</label><input type="email" placeholder="you@company.com"></div>
+        <div class="form-field"><label>How can we help?</label><textarea placeholder="A short description of what you're looking for..."></textarea></div>
+        <button class="btn-primary">Send message
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h9m0 0L8 3m4 4L8 11"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">Aastha <span class="logo-dot"></span> Advisors</a>
+        <p>An independent Indian advisory firm offering audit, tax, and advisory services to businesses building for the long term.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <a href="#">Audit & Assurance</a><a href="#">Tax</a><a href="#">Transactions</a><a href="#">Risk & Compliance</a><a href="#">Family Office</a>
+      </div>
+      <div class="footer-col">
+        <h5>Firm</h5>
+        <a href="#">About</a><a href="#">People</a><a href="#">Insights</a><a href="#">Careers</a><a href="#">Press</a>
+      </div>
+      <div class="footer-col">
+        <h5>Offices</h5>
+        <a href="#">Mumbai</a><a href="#">Bengaluru</a><a href="#">New Delhi</a><a href="#">Hyderabad</a><a href="#">Pune</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Aastha Advisors LLP. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.15 });
+reveals.forEach(r => obs.observe(r));
+
+const counters = document.querySelectorAll('.hero-meta-item .num');
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.dataset.target);
+    const duration = 1400;
+    const start = performance.now();
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target) + (target >= 100 ? '+' : '');
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    counterObs.unobserve(el);
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObs.observe(c));
+</script>
+
+</body>
+</html>
